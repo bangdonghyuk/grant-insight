@@ -1,0 +1,23 @@
+.header{
+    position: relative;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.header__back{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    text-indent: -9999px;
+    background-image: url("../../../assets/images/icon_header_back.png");
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

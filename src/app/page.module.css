@@ -1,168 +1,234 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+.home {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+.search{
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+ 
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+.search__input{
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
 
-.main li:not(:last-of-type) {
+.search__btn{
+  height: 40px;
+  margin-left: 8px;
+  white-space: nowrap;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+}
+
+.category{
+  padding-top: 20px;
+}
+
+.category__tit{
   margin-bottom: 8px;
 }
 
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
+.category__list{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
+.category__item{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+
+  width: 100%;
+  height: 40px;
+
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.content {
+  background-color: #f5f5f5;
+  padding: 0 16px 40px;
+  min-height: calc(100vh - 189px);
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+.list{
+	padding: 20px 0;
 }
 
-.footer {
-  grid-row-start: 3;
+.item{
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 20px;
 }
 
-.footer a {
+.item + .item{
+	margin-top: 16px;
+}
+
+.tit{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.textBox{
+    margin-bottom: 4px;
+}
+
+.text{
+  display: inline-block;
+  background-color: #5c84f0;
+  padding: 6px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.selectBox{
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  width: 100%;
+  height: 36px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.footer img {
-  flex-shrink: 0;
+.selectBox::after{
+  position: absolute;
+  right: 8px;
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/images/icon_select_arrow.png");
+  background-position: center;
+  background-size: contain;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.selectBox + .selectBox{
+  margin-left: 10px;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+.selectBox__select{
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 8px;
+  background: transparent;
+  -webkit-appearance: none;
+  padding-right: 30px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+.selectArea{
+  display: flex;
+  align-items: center;
+  padding: 20px 16px;
+}
+
+.total{
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.total strong{
+  margin-left: 8px;
+  color: #0b70b9;
+}
+
+.listBox{}
+
+.listBox__item{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.listBox__item + .listBox__item{
+  margin-top: 20px;
+}
+
+.listBox__tit{
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.listBox__name{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.listBox__grayBox{
+  display: inline-block;
+  width: auto;
+  padding: 2px 4px;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #777;
+}
+
+.listBox__box{
+  display: flex;
+  align-items: center;
+}
+
+.listBox__box + .listBox__box{
+  margin-top: 10px;
+}
+
+.listBox__subTit{
+  min-width: 100px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #777;
+}
+
+.listBox__text{
+  font-size: 14px;
+}
+
+.btns{
+  display: flex;
+  justify-content: center;
+}
+
+.loadMore{
+  width: 100px;
+  height: 36px;
+  color: #0b70b9;
+  border: 1px solid #0b70b9;
+  background-color: transparent;
+  margin-top: 30px;
+}
+
+.listBox__btns{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.listBox__btn{
+  background-color: #fff;
+  border: 1px solid #222;
+  padding: 4px 6px;
 }
