@@ -3,14 +3,13 @@
 import { useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation';
 import { useDetailStore } from './stores/detailStore';
-import type { DetailType } from './lib/keyLabelMap';
 import styles from "./page.module.css";
 
 export default function Home() {
   const [pageNo, setPageNo] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<GrantItem[]>([]);
   const router = useRouter();
 
   const [active, setActive] = useState('T_OPD_PBNS');
@@ -18,10 +17,18 @@ export default function Home() {
 
   const [loading, setLoading] = useState(false);
   const { setDetail } = useDetailStore();
-  const handleClick = (item: DetailType) => {
-    setDetail(item);
-    router.push(`/detail`);
+
+
+  type GrantItem = {
+    [key: string]: string;
   };
+
+
+const handleClick = (item: GrantItem) => {
+  setDetail(item);
+  router.push('/detail');
+};
+
 
 
 const fetchDataByType = async (type: string, page: number = 1, realm?: string) => {
@@ -60,14 +67,11 @@ const fetchDataByType = async (type: string, page: number = 1, realm?: string) =
   }
 };
   
-    // 초기 useEffect
     useEffect(() => {
-      // 초기 로딩 or 분야 선택 변경 시 호출
       fetchDataByType(active, 1, selectedRealm);
       setPageNo(1);
-    }, [selectedRealm]);
+    }, [selectedRealm, active]);
 
-    // 셀렉트 변경 핸들러도 재활용
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       const newTab = e.target.value;
       setActive(newTab);
@@ -83,9 +87,6 @@ const fetchDataByType = async (type: string, page: number = 1, realm?: string) =
     { name: '분야부문별 보조사업자현황', code: 'T_OPD_PRMSCT_ABZMST' },
     { name: '중앙부처별 보조사업자현황', code: 'T_OPD_PCMNOF_ABZMST' },
     { name: '내역사업현황', code: 'T_OPD_DTLBZ_CSTS' },
-    // { name: '보조사업현황', code: 'T_OPD_ASBS_IFPBNT' },
-    // { name: '보조사업자정보공시목록', code: 'T_OPD_ABZM_IFPBNT_LIST' },
-    // { name: '중요재산정보공시목록', code: 'T_OPD_IMPRPR_IFPBNT_LIST' },
   ];
 
   const REALM_NM_OPTIONS = [

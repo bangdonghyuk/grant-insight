@@ -4,6 +4,9 @@
     border-bottom: 1px solid #ddd;
     text-align: center;
     box-sizing: border-box;
+
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .header__back{

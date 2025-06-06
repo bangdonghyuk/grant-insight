@@ -1,13 +1,10 @@
 // app/detail/page.tsx
 'use client';
 
-import { useParams } from 'next/navigation';
 import { useDetailStore } from '../stores/detailStore';
-import { keyLabelMap, DetailKey } from '../lib/keyLabelMap';
 import styles from './page.module.css';
 
 export default function DetailPage() {
-  const params = useParams(); // 필요시 params.idx 등 사용 가능
   const { detail } = useDetailStore();
 
   if (!detail) {
@@ -67,7 +64,7 @@ export default function DetailPage() {
 
         <div className={styles.detail__subTit}>사업요약</div>
         <div className={styles.detail__content}>
-          {detail.BSNS_SMRY.split(/\r\n|\n/).map((line, i) => (
+          {detail.BSNS_SMRY.split(/\r\n|\n/).map((line: string, i: number) => (
               <div key={i}>{line}</div>
           ))}
         </div>
@@ -75,30 +72,28 @@ export default function DetailPage() {
 
         <div className={styles.detail__subTit}>지원대상</div>
           <div className={styles.detail__content}>
-          {detail.SPORT_TRGET_CN.split(/\r\n|\n/).map((line, i) => (
+          {detail.SPORT_TRGET_CN.split(/\r\n|\n/).map((line: string, i: number) => (
               <div key={i}>{line}</div>
           ))}
         </div>
        
           <div className={styles.detail__subTit}>선정기준</div>
           <div className={styles.detail__content}>
-            {detail.SLCTN_STDR_DC.split(/\r\n|\n/).map((line, i) => (
+            {detail.SLCTN_STDR_DC.split(/\r\n|\n/).map((line: string, i: number) => (
                 <div key={i}>{line}</div>
             ))}
           </div>
 
           <div className={styles.detail__subTit}>선정결과 발표방법</div>
           <div className={styles.detail__content}>
-            {detail.SLCTN_RESULT_DSPTH_MTH_CN.split(/\r\n|\n/).map((line, i) => (
+            {detail.SLCTN_RESULT_DSPTH_MTH_CN.split(/\r\n|\n/).map((line: string, i: number) => (
                 <div key={i}>{line}</div>
             ))}
           </div>
 
-      
-
           <div className={styles.detail__subTit}>제출서류 안내</div>
           <div className={styles.detail__content}>
-            {detail.PRESENTN_PAPERS_GUIDANCE_CN.split(/\r\n|\n/).map((line, i) => (
+            {detail.PRESENTN_PAPERS_GUIDANCE_CN.split(/\r\n|\n/).map((line: string, i: number) => (
                 <div key={i}>{line}</div>
             ))}
           </div>
@@ -110,43 +105,11 @@ export default function DetailPage() {
 
           <div className={styles.detail__subTit}>주관기관</div>
           <div className={styles.detail__content}>
-            {detail.PSSRP_INSTT_NM.split(/\r\n|\n/).map((line, i) => (
+            {detail.PSSRP_INSTT_NM.split(/\r\n|\n/).map((line: string, i: number) => (
                 <div key={i}>{line}</div>
             ))}
           </div>
-
       </div>
-
-      {/* <div className={styles.detail__box}>
-          <div className={styles.detail__subTit}>신청기간</div>
-          <div className={styles.detail__date}>
-              <div>{detail.RCEPT_BEGIN_DE}</div>
-              <div className={styles.detail__wave}>~</div>
-              <div>{detail.RCEPT_END_DE}</div>
-          </div>
-      </div>
-
-      <div className={styles.detail__box}>
-          <div className={styles.detail__subTit}>전화문의</div>
-          <div className={styles.detail__date}>
-              <div>{detail.CHARGER_NM}</div>
-              <div className={styles.detail__dash}>/</div>
-              <div>{detail.CHARGER_TELNO}</div>
-          </div>
-      </div> */}
-
-      {/* {Object.entries(keyLabelMap).map(([key, label]) => (
-        <div key={key} className={styles.detail__item}>
-          <div className={styles.detail__label}>{label}</div>
-          <div className={styles.detail__box}>
-            {String(detail[key as DetailKey] || '')
-              .split(/\r\n|\n/)
-              .map((line, idx) => (
-                <div key={idx} className={styles.detail__line}>{line}</div>
-              ))}
-          </div>
-        </div>
-      ))} */}
     </div>
   );
 }

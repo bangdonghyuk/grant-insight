@@ -11,7 +11,6 @@ export async function GET(req: Request) {
   const baseUrl = 'https://apis.data.go.kr/1051000/MoefOpenAPI';
   const today = new Date();
   const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
   const resultType = 'json';
 
   // ✅ realmNm이 있으면 파라미터에 추가
